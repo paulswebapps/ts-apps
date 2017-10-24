@@ -16,11 +16,13 @@ Tradeshift's platform exposes a wide array of useful end-points. To integrate yo
 
   - **Client id:** this will be your `VenderID.AppID`. For example, the ID for our Developer app is `Tradeshift.Developer`.
   - **Client secret:** a key that should never be exposed. The authorization server uses this to confirm that the request is coming from your app, and from nowhere else.
-  - **Redirect URI:** In the oAuth2 flow, your server first requests an authorization code, then the authorization server will send the authorization code to this URL (using a redirect for added security).
-  - **Authorization Server URL:** in the first leg of the flow, your app will redirect to this URL to obtain the authorization code, which will be send to the **Redirect URI**.
+  - **Redirect URI:** In the oAuth2 flow, your server first requests an authorization code, then the authorization server redirects to this URL.
+  - **Authorization Server URL:** in the first leg of the flow, your server redirects to this URL to obtain the authorization code, which will be send to the **Redirect URI**.
+    - sandbox (also used for local development): https://api-sandbox.tradeshift.com/tradeshift
+    - production: https://api.tradeshift.com/tradeshift
 
-- **Important:** to get the oAuth2 flow working locally, you need a way to expose a domain, so that the authorization server can redirect to your local server. Two popular services for doing this is [pagekite](https://pagekite.net/) and [ngrok](https://ngrok.com/). Pagekite is slightly cheaper (around $3/month).
+- **Important:** to get the oAuth2 flow working on a local development machine, we must expose a public domain, so that the authorization server can redirect to the server on the local machine. Two popular services for doing this are [pagekite](https://pagekite.net/) and [ngrok](https://ngrok.com/). Pagekite is slightly cheaper (around $3/month).
 
-- Because you'll need a separate *redirect URI* for your local development environment, versus when your app is running from your host, it's easiest to create two app entries in sandbox.
+- Because you'll need a separate **redirect URI** for your local development environment, versus when your app is running from your host, it's easiest to create two app entries in sandbox.
 
 To sum it up, by the time you publish to production, you'll have **three** app entries: two in sandbox (one of them for your local setup, and one for staging), and one in production.
